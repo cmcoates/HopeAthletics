@@ -33,6 +33,13 @@
             <ListView ItemsSource="{Binding Path=Sports}">
                 
             </ListView>
+
+            <Button x:Name="About"
+                    Text="About"
+                    Clicked="OnAboutClicked"
+                    VerticalOptions="End">
+                
+            </Button>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

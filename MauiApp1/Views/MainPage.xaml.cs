@@ -83,4 +83,9 @@ public partial class MainPage : ContentPage
         Sports.Add("Cheerleading");*/
         App.Current.MainPage = new NavigationPage(new AthleticsWomen());
     }
+
+    private void OnAboutClicked(object sender, EventArgs e)
+    {
+        App.Current.MainPage = new NavigationPage(new About());
+    }
 }
