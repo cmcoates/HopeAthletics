@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp1.MainPage">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Spacing="25"
+            Padding="30,0"
+            VerticalOptions="Center">
+
+            <Image Source="C:\Users\12697\AthleticsApp\HopeAthletics.png" WidthRequest="250" />
+
+            <HorizontalStackLayout HorizontalOptions="Center">
+                <Button
+                x:Name="MensSports"
+                Text="Men's Sports"
+                Clicked="OnCounterClickedMenSports"
+                HorizontalOptions="Center"
+                Margin="0,0,10,0"
+                BackgroundColor="#024"
+                 />
+                <Button
+                x:Name="WomensSports"
+                Text="Women's Sports"
+                SemanticProperties.Hint="Counts the number of times you click"
+                Clicked="OnCounterClickedWomensSports"
+                HorizontalOptions="Center"
+                BackgroundColor="#024"/>
+            </HorizontalStackLayout>
+            
+
+            <ListView ItemsSource="{Binding Path=Sports}">
+                
+            </ListView>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
