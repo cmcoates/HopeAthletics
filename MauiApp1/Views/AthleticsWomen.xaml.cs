@@ -40,9 +40,18 @@ public partial class AthleticsWomen : ContentPage
         HtmlWeb web = new();
         HtmlDocument docA = web.Load("https://athletics.hope.edu/navbar-women-sport");
         var womensSports = docA.DocumentNode.SelectNodes("//li[@class='has-nav']//ul[@class='clearfix']//li[2]");
-        //mensSports.RemoveAt(10);
-        var msport = womensSports[sport];
-        String path = msport.InnerHtml;
+        var womensSportsCheer = docA.DocumentNode.SelectNodes("//li[@class='has-nav']//ul[@class='clearfix']//li[1]");
+        HtmlNode wSport;
+        if(sport == 10)
+        {
+            wSport = womensSportsCheer[sport];
+        }
+        else
+        {
+            wSport = womensSports[sport];
+        }
+        
+        String path = wSport.InnerHtml;
         string pattern = @"/sports/[\w/-]*";
         Regex rg = new(pattern);
         Match match = rg.Match(path);
