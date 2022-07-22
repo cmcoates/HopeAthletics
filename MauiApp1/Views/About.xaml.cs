@@ -5,7 +5,8 @@ public partial class About : ContentPage
 	public About()
 	{
 		InitializeComponent();
-	}
+        this.BindingContext = this;
+    }
 
 	private void Button_Clicked(object sender, EventArgs e)
 	{

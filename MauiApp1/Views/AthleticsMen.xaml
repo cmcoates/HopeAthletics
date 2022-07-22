@@ -10,13 +10,6 @@
                 BackgroundColor="#024">
         </Button>
 
-        <Button Text="Sports"
-                Clicked="Button_ClickedSports">
-            
-        </Button>
-
         <ListView ItemsSource="{Binding Path=Sports}"/>
-
-        <Label Text="{Binding lo}"/>
     </VerticalStackLayout>
 </ContentPage>

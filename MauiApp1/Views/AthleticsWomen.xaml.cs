@@ -15,8 +15,9 @@ public partial class AthleticsWomen : ContentPage
     public AthleticsWomen()
 	{
 		InitializeComponent();
-		
-	}
+        this.BindingContext = this;
+        DisplaySports();
+    }
 
 	private void Button_Clicked(object sender, EventArgs e)
 	{
@@ -26,7 +27,6 @@ public partial class AthleticsWomen : ContentPage
 	private void DisplaySports()
 	{
         Sports.Clear();
-        
         Sports.Add("Basketball");
         Sports.Add("Cross Country");
         Sports.Add("Golf");

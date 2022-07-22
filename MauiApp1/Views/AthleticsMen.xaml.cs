@@ -18,22 +18,18 @@ public partial class AthleticsMen : ContentPage
     public AthleticsMen()
 	{
 		InitializeComponent();
-	}
+        this.BindingContext = this;
+        DisplaySports();
+    }
 
 	private void Button_Clicked(object sender, EventArgs e)
 	{
         App.Current.MainPage = new NavigationPage(new MainPage());
     }
 
-    private void Button_ClickedSports(object sender, EventArgs e)
-    {
-        DisplaySports();
-    }
-
     private void DisplaySports()
 	{
         Sports.Clear();
-        
         Sports.Add("Baseball");
         Sports.Add("Basketball");
         Sports.Add("Cross Country");
