@@ -10,6 +10,19 @@
                 BackgroundColor="#024">
         </Button>
 
-        <ListView ItemsSource="{Binding Path=Sports}"/>
+        <Picker x:Name="SportPicker"
+                Title="Select a sport" 
+                ItemsSource="{Binding Sports}"
+                HorizontalOptions="Center"
+                SelectedIndexChanged="OnPickerSelectedIndexChanged"/>
+
+        <ListView ItemsSource="{Binding Athletes, Mode=OneWay}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Text="{Binding Name}"
+                                Detail="{Binding Hometown}" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </VerticalStackLayout>
 </ContentPage>
