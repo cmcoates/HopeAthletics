@@ -16,11 +16,48 @@
                 HorizontalOptions="Center"
                 SelectedIndexChanged="OnPickerSelectedIndexChanged"/>
 
-        <ListView ItemsSource="{Binding Athletes, Mode=OneWay}">
+        <Label x:Name="NotFound"
+               Text="{Binding NotFound}"
+               HorizontalOptions="Center"/>
+
+        <ListView ItemsSource="{Binding Athletes}"
+                  HeightRequest="350">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <TextCell Text="{Binding Name}"
-                                Detail="{Binding Hometown}" />
+                    <ViewCell>
+                        <Grid Padding="10">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="60" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto" />
+                                <ColumnDefinition Width="400" />
+                                <ColumnDefinition Width="auto" />
+                            </Grid.ColumnDefinitions>
+
+                            <Image Grid.RowSpan="2"
+                                   Source="{Binding ImageUrl}"
+                                   Aspect="AspectFill"
+                                   HeightRequest="60"
+                                   WidthRequest="60"
+                                   Margin="10,10,10,10"/>
+                            
+                            <Label Grid.Column="1"
+                                   Grid.Row="1"
+                                   Text="{Binding Name}"
+                                   FontAttributes="Bold" />
+                            <Label Grid.Column="1"
+                                   Grid.Row="2"
+                                   Text="{Binding Hometown}"
+                                   VerticalOptions="End"/>
+                            <Label Grid.Column="3"
+                                   Grid.Row="1"
+                                   Text="{Binding Class}"
+                                   FontAttributes="Italic" 
+                                   HorizontalOptions="End"/>
+                        </Grid>
+                    </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>

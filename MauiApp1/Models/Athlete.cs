@@ -11,6 +11,6 @@ namespace MauiApp1.Models
         public string Name { get; set; }
         public string Hometown { get; set; }
         public string Class { get; set; }
-        public string Image { get; set; }
+        public string ImageUrl { get; set; }
     }
 }

@@ -42,7 +42,7 @@ public partial class AthleticsMen : ContentPage
         HtmlWeb web = new();
         HtmlDocument docA = web.Load("https://athletics.hope.edu/navbar-men-sports");
         var mensSports = docA.DocumentNode.SelectNodes("//li[@class='has-nav']//ul[@class='clearfix']//li[2]");
-
+        mensSports.RemoveAt(10);
         var msport = mensSports[sport];
         String path = msport.InnerHtml;
         string pattern = @"/sports/[\w/-]*";
@@ -52,35 +52,53 @@ public partial class AthleticsMen : ContentPage
 
         HtmlDocument docB = web.Load("https://athletics.hope.edu" + path);
         var athls = docB.DocumentNode.SelectNodes("//div[@class='roster']//table//tbody//tr");
-        foreach(var a in athls)
+        if (athls is not null)
         {
-            String htmlAthleteInfo = a.InnerHtml;
-            htmlAthleteInfo = htmlAthleteInfo.Replace("\t", "");
-            htmlAthleteInfo = htmlAthleteInfo.Replace("\n", "");
-            htmlAthleteInfo = htmlAthleteInfo.Replace(" ", "");
-
-            string athletePattern = "(?<=class=\"headshotlazyload\">)[\\w]*";
-            Regex nameReg = new(athletePattern);
-            match = nameReg.Match(htmlAthleteInfo);
-            String name = match.Value;
-
-            athletePattern = "(?<=Hometown/HighSchool:</span.)[\\w,/.]*(?<!</td>)";
-            Regex homeReg = new(athletePattern);
-            match = homeReg.Match(htmlAthleteInfo);
-            String hometown = match.Value;
-
-            athletePattern = "(?<=Class:</span>)[\\w]*";
-            Regex classReg = new(athletePattern);
-            match = classReg.Match(htmlAthleteInfo);
-            String athleteClass = match.Value;
-
-            Athlete athlete = new()
+            NotFound.Text = "";
+            foreach (var a in athls)
             {
-                Name = name,
-                Hometown = hometown,
-                Class = athleteClass
-            };
-            Athletes.Add(athlete);
+                String htmlAthleteInfo = a.InnerHtml;
+                htmlAthleteInfo = htmlAthleteInfo.Replace("\t", "");
+                htmlAthleteInfo = htmlAthleteInfo.Replace("\n", "");
+                htmlAthleteInfo = htmlAthleteInfo.Replace(" ", "");
+
+                string athletePattern = "(?<=class=\"headshotlazyload\">)[\\w.]*";
+                Regex nameReg = new(athletePattern);
+                match = nameReg.Match(htmlAthleteInfo);
+                String name = match.Value;
+                name = string.Concat(name.Select(x => Char.IsUpper(x) ? " " + x : x.ToString())).TrimStart(' ');
+
+                athletePattern = "(?<=Hometown/HighSchool:</span.)[\\w,/.]*(?<!</td>)";
+                Regex homeReg = new(athletePattern);
+                match = homeReg.Match(htmlAthleteInfo);
+                String hometown = match.Value;
+                hometown = Regex.Replace(hometown, "([a-z])([A-Z])", "$1 $2");
+                hometown = hometown.Replace(",", ", ");
+
+                athletePattern = "(?<=Class:</span>)[\\w]*";
+                Regex classReg = new(athletePattern);
+                match = classReg.Match(htmlAthleteInfo);
+                String athleteClass = match.Value;
+
+                athletePattern = "(?<=data-src=\")[\\w/.-]*";
+                Regex imgReg = new(athletePattern);
+                match = imgReg.Match(htmlAthleteInfo);
+                String img = match.Value;
+                img = "https://athletics.hope.edu" + img;
+
+                Athlete athlete = new()
+                {
+                    Name = name,
+                    Hometown = hometown,
+                    Class = athleteClass,
+                    ImageUrl = img
+                };
+                Athletes.Add(athlete);
+            }
+        }
+        else
+        {
+            NotFound.Text = "Roster not available";
         }
     }
 
