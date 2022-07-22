@@ -18,8 +18,8 @@
                 Clicked="OnCounterClickedMenSports"
                 HorizontalOptions="Center"
                 Margin="0,0,10,0"
-                BackgroundColor="#024"
-                 />
+                BackgroundColor="#024"/>
+                
                 <Button
                 x:Name="WomensSports"
                 Text="Women's Sports"
@@ -28,18 +28,16 @@
                 HorizontalOptions="Center"
                 BackgroundColor="#024"/>
             </HorizontalStackLayout>
-            
-
-            <ListView ItemsSource="{Binding Path=Sports}">
-                
-            </ListView>
 
             <Button x:Name="About"
                     Text="About"
                     Clicked="OnAboutClicked"
-                    VerticalOptions="End">
+                    VerticalOptions="End"
+                    BackgroundColor="#024">
                 
             </Button>
+
+            <ListView ItemsSource="{Binding Sports}"/>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

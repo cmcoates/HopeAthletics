@@ -10,7 +10,7 @@
             HorizontalOptions="Center" />
 
         <Button
-            Clicked="Button_Clicked"
+            Clicked="Button_Clicked" 
             HorizontalOptions="Start"
             BackgroundColor="#024"
             Text="Home">

@@ -9,14 +9,6 @@ namespace MauiApp1;
 
 public partial class MainPage : ContentPage
 {
-    ObservableCollection<String> sports = new();
-
-    public ObservableCollection<String> Sports
-    {
-        get { return sports; }
-        set { sports = value;  }
-    }
-
     public MainPage()
 	{
 		InitializeComponent();
