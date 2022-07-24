@@ -16,11 +16,27 @@
                 HorizontalOptions="Center"
                 SelectedIndexChanged="OnPickerSelectedIndexChanged"/>
 
-        <Label x:Name="NotFound"
-               Text="{Binding NotFound}"
+        <Label x:Name="RosterNotFound"
                HorizontalOptions="Center"/>
 
-        <ListView ItemsSource="{Binding Athletes}"
+        <Label x:Name="ScheduleNotFound"
+               HorizontalOptions="Center"/>
+
+        <HorizontalStackLayout HorizontalOptions="Center">
+            <Button x:Name="RosterBtn"
+                    Text="Roster"
+                    Clicked="OnRosterClicked"
+                    IsVisible="false">
+            </Button>
+            <Button x:Name="ScheduleBtn"
+                    Text="Schedule"
+                    Clicked="OnScheduleClicked"
+                    IsVisible="false">
+            </Button>
+        </HorizontalStackLayout>
+
+        <ListView x:Name="RosterList"
+                  ItemsSource="{Binding Athletes}"
                   HeightRequest="400"
                   Margin="15">
             <ListView.ItemTemplate>
@@ -57,6 +73,50 @@
                                    Text="{Binding Class}"
                                    FontAttributes="Italic" 
                                    HorizontalOptions="End"/>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <ListView x:Name="ScheduleList"
+                  ItemsSource="{Binding Games}"
+                  HeightRequest="400"
+                  Margin="15"
+                  IsVisible="false">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid Padding="10">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="60" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto" />
+                                <ColumnDefinition Width="175" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="auto" />
+                            </Grid.ColumnDefinitions>
+
+                            <Label Grid.Row="1"
+                                   Grid.Column="1"
+                                   Text="{Binding Date}"/>
+
+                            <Label Grid.Row="1"
+                                   Grid.Column="2"
+                                   Text="{Binding Location}"
+                                   FontAttributes="Bold" />
+
+                            <Label Grid.Row="2"
+                                   Grid.Column="2"
+                                   Text="{Binding Opponent}"
+                                   VerticalOptions="End"/>
+
+                            <Label Grid.Row="1"
+                                   Grid.Column="3"
+                                   Text="{Binding Result}"
+                                   FontAttributes="Italic"/>
                         </Grid>
                     </ViewCell>
                 </DataTemplate>

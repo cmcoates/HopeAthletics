@@ -174,6 +174,7 @@ public partial class AthleticsMen : ContentPage
                     Regex opponentReg = new(schedulePattern);
                     match = opponentReg.Match(htmlScheduleInfo);
                     String opponent = match.Value;
+                    opponent = string.Concat(opponent.Select(x => Char.IsUpper(x) ? " " + x : x.ToString())).TrimStart(' ');
 
                     schedulePattern = "(?<=<tdclass=\"e_result\">)[\\w,-]*";
                     Regex resultReg = new(schedulePattern);
