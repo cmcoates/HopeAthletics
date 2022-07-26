@@ -1,8 +1,82 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:MauiApp1"
              x:Class="MauiApp1.AthleticsMen"
              Title="Men's Athletics">
+
+    <ContentPage.BindingContext>
+        <local:AthleticsMenViewModel />
+    </ContentPage.BindingContext>
+
+    <VerticalStackLayout>
+        <HorizontalStackLayout>
+            <Button x:Name="RosterButton"
+            Text="Roster"
+            HeightRequest="20"
+            WidthRequest="60"
+            Command="{Binding RosterCommand}"
+            CommandParameter="Text"/>
+
+            <Button x:Name="ScheduleButton"
+            Text="Schedule"
+            HeightRequest="20"
+            WidthRequest="60"
+            Command="{Binding ScheduleCommand}"/>
+        </HorizontalStackLayout>
+
+
+        <ListView x:Name="RosterList"
+                  ItemsSource="{Binding Athletes}"
+                  HeightRequest="400"
+                  Margin="15"
+                  IsVisible="false">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid Padding="10">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="60" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto" />
+                                <ColumnDefinition Width="350" />
+                                <ColumnDefinition Width="auto" />
+                            </Grid.ColumnDefinitions>
+
+                            <Image Grid.RowSpan="2"
+                                   Source="{Binding ImageUrl}"
+                                   Aspect="AspectFill"
+                                   HeightRequest="60"
+                                   WidthRequest="60"
+                                   Margin="10,10,10,10"/>
+
+                            <Label Grid.Column="1"
+                                   Grid.Row="1"
+                                   Text="{Binding Name}"
+                                   FontAttributes="Bold" />
+                            <Label Grid.Column="1"
+                                   Grid.Row="2"
+                                   Text="{Binding Hometown}"
+                                   VerticalOptions="End"/>
+                            <Label Grid.Column="3"
+                                   Grid.Row="1"
+                                   Text="{Binding Class}"
+                                   FontAttributes="Italic" 
+                                   HorizontalOptions="End"/>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </VerticalStackLayout>
+    
+    
+    
+
+    
+    <!--
     <VerticalStackLayout>
         <Button Text="Home"
                 Clicked="Button_Clicked"
@@ -80,7 +154,7 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        
+
 
         <ListView x:Name="ScheduleList"
                   ItemsSource="{Binding Games}"
@@ -110,12 +184,12 @@
                                    Grid.Column="2"
                                    Text="{Binding Location}"
                                    FontAttributes="Bold" />
-                            
+
                             <Label Grid.Row="2"
                                    Grid.Column="2"
                                    Text="{Binding Opponent}"
                                    VerticalOptions="End"/>
-                            
+
                             <Label Grid.Row="1"
                                    Grid.Column="3"
                                    Text="{Binding Result}"
@@ -126,4 +200,5 @@
             </ListView.ItemTemplate>
         </ListView>
     </VerticalStackLayout>
+    -->
 </ContentPage>

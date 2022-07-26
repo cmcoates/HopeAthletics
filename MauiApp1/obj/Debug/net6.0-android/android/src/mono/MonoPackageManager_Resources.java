@@ -1,8 +1,8 @@
 package mono;
 public class MonoPackageManager_Resources {
 	public static String[] Assemblies = new String[]{
-		/* We need to ensure that "MauiApp1.dll" comes first in this list. */
-		"MauiApp1.dll",
+		/* We need to ensure that "HopeAthletics.dll" comes first in this list. */
+		"HopeAthletics.dll",
 		"Microsoft.Maui.dll",
 		"Microsoft.Maui.Controls.Compatibility.dll",
 		"Microsoft.Maui.Controls.Xaml.dll",

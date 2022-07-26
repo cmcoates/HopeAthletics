@@ -1,11 +1,4 @@
-﻿
-using HtmlAgilityPack;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using static MauiApp1.MainPage;
-
-namespace MauiApp1;
+﻿namespace MauiApp1;
 
 public partial class MainPage : ContentPage
 {
