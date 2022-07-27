@@ -21,4 +21,9 @@ public partial class MainPage : ContentPage
     {
         App.Current.MainPage = new NavigationPage(new About());
     }
+
+    private void Button_Clicked(object sender, EventArgs e)
+    {
+        App.Current.MainPage = new NavigationPage(new Intramurals());
+    }
 }

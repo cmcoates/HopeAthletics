@@ -11,8 +11,6 @@ namespace MauiApp1.Models
         public string Ranking { get; set; }
         public string Team { get; set; }
         public string GamesPlayed { get; set; }
-        public string Wins { get; set; }
-        public string Losses { get; set; }
-        public string Draws { get; set; }
+        public string Record { get; set; }
     }
 }

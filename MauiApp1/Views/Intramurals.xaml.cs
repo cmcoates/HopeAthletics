@@ -86,6 +86,7 @@ public partial class Intramurals : ContentPage
                 reg = new(pattern);
                 match = reg.Match(str);
                 string gamesPlayed = match.Value;
+                gamesPlayed = "GP: " + gamesPlayed;
 
                 pattern = "(?<=games_played\">[\\d]*</td><td>)[\\d]*";
                 reg = new(pattern);
@@ -113,7 +114,7 @@ public partial class Intramurals : ContentPage
                 {
                     ties = "0";
                 }
-
+                string record = wins + "-" + losses + "-" + ties;
 
                 //docA = web.Load("https://scheduler.leaguelobster.com/" + url);
                 //intramuralInfo = docA.DocumentNode.SelectNodes("//div[@class='col-md-7']//div[@class='panel panel-default schedule-panel schedule-maker-panel']//div[@class='panel-body schedule games-container']//div//div//div");
@@ -124,9 +125,7 @@ public partial class Intramurals : ContentPage
                     Ranking = ranking,
                     Team = team,
                     GamesPlayed = gamesPlayed,
-                    Wins = wins,
-                    Losses = losses,
-                    Draws = ties
+                    Record = record
                 };
                 standings.Add(standing);
             }

@@ -23,12 +23,18 @@
                 <Button
                 x:Name="WomensSports"
                 Text="Women's Sports"
-                SemanticProperties.Hint="Counts the number of times you click"
                 Clicked="OnCounterClickedWomensSports"
                 HorizontalOptions="Center"
                 BackgroundColor="#024"/>
             </HorizontalStackLayout>
 
+            <Button Text="Intramurals"
+                    Clicked="Button_Clicked"
+                    BackgroundColor="#024"
+                    HorizontalOptions="Center"
+                    WidthRequest="130">
+                
+            </Button>
             <Button x:Name="About"
                     Text="About"
                     Clicked="OnAboutClicked"

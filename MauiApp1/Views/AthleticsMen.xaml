@@ -4,11 +4,12 @@
              xmlns:local="clr-namespace:MauiApp1"
              x:Class="MauiApp1.AthleticsMen"
              Title="Men's Athletics">
-
+    <!--
     <ContentPage.BindingContext>
         <local:AthleticsMenViewModel />
     </ContentPage.BindingContext>
-
+    -->
+    <!--
     <VerticalStackLayout>
         <HorizontalStackLayout>
             <Button x:Name="RosterButton"
@@ -71,17 +72,18 @@
             </ListView.ItemTemplate>
         </ListView>
     </VerticalStackLayout>
-    
-    
-    
+    -->
 
-    
-    <!--
+
+
+
+
     <VerticalStackLayout>
-        <Button Text="Home"
+        <Button Text="&#xEA8A;"
                 Clicked="Button_Clicked"
                 HorizontalOptions="Start"
-                BackgroundColor="#024">
+                BackgroundColor="#024"
+                FontFamily="Segoe MDL2 Assets">
         </Button>
 
         <Picker x:Name="SportPicker"
@@ -92,10 +94,10 @@
 
         <Label x:Name="RosterNotFound"
                HorizontalOptions="Center"/>
-        
+
         <Label x:Name="ScheduleNotFound"
                HorizontalOptions="Center"/>
-        
+
         <HorizontalStackLayout HorizontalOptions="Center">
             <Button x:Name="RosterBtn"
                     Text="Roster"
@@ -108,8 +110,8 @@
                     IsVisible="false">
             </Button>
         </HorizontalStackLayout>
-        
-        
+
+
         <ListView x:Name="RosterList"
                   ItemsSource="{Binding Athletes}"
                   HeightRequest="400"
@@ -135,7 +137,7 @@
                                    HeightRequest="60"
                                    WidthRequest="60"
                                    Margin="10,10,10,10"/>
-                            
+
                             <Label Grid.Column="1"
                                    Grid.Row="1"
                                    Text="{Binding Name}"
@@ -200,5 +202,4 @@
             </ListView.ItemTemplate>
         </ListView>
     </VerticalStackLayout>
-    -->
 </ContentPage>
