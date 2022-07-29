@@ -7,14 +7,15 @@
                 Clicked="Button_Clicked"
                 HorizontalOptions="Start"
                 BackgroundColor="#024"
-                FontFamily="Segoe MDL2 Assets">
+                FontFamily="Segoe MDL2 Assets"
+                CornerRadius="5">
         </Button>
 
         <Picker x:Name="SportPicker"
                 Title="Select a sport" 
                 ItemsSource="{Binding Sports}"
                 HorizontalOptions="Center"
-                SelectedIndexChanged="OnPickerSelectedIndexChanged"/>
+                SelectedIndexChanged="OnPickerSelectedIndexChanged" />
 
         <Label x:Name="RosterNotFound"
                HorizontalOptions="Center"/>
@@ -49,8 +50,8 @@
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="auto" />
-                                <ColumnDefinition Width="350" />
-                                <ColumnDefinition Width="auto" />
+                                <ColumnDefinition Width="300" />
+                                <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
 
                             <Image Grid.RowSpan="2"

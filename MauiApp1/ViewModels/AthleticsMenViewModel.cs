@@ -1,4 +1,5 @@
-﻿using MauiApp1.Models;
+﻿using HtmlAgilityPack;
+using MauiApp1.Models;
 using MauiApp1.Services;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
@@ -15,20 +17,24 @@ namespace MauiApp1
 {
     public class AthleticsMenViewModel : INotifyPropertyChanged
     {
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler? PropertyChanged;
 
-        public ICommand PickerSelect { get; private set; }
         public ICommand RosterCommand { get; private set; }
         public ICommand ScheduleCommand { get; private set; }
+        public ICommand HomeCommand { get; private set; }
 
-
-        RosterService rosterService = new RosterService();
-        ScheduleService scheduleService = new ScheduleService();
+        readonly RosterService rosterService = new();
+        readonly ScheduleService scheduleService = new();
 
         private ObservableCollection<Athlete> athletes;
         private ObservableCollection<string> sports;
         private ObservableCollection<Game> games;
-        private string currentMonth;
+        
+        public int pickerItem;
+        public bool rosterVisibility = false;
+        public bool scheduleVisibility = false;
+        public bool rosterBtnVisibility = false;
+        public bool scheduleBtnVisibility = false;
 
         public ObservableCollection<Athlete> Athletes
         {
@@ -47,49 +53,98 @@ namespace MauiApp1
             get { return games; }
             set { games = value; OnPropertyChanged(); }
         }
-        public String CurrentMonth
+
+        public int PickerItem
         {
-            get { return currentMonth; }
-            set { currentMonth = value; OnPropertyChanged(); }
+            get { return pickerItem; }
+            set { pickerItem = value; GetTeam(pickerItem); OnPropertyChanged(); }
+        }
+
+        public bool RosterVisibility
+        {
+            get { return rosterVisibility; }
+            set { rosterVisibility = value; OnPropertyChanged(); }
+        }
+
+        public bool ScheduleVisibility
+        {
+            get { return scheduleVisibility; }
+            set { scheduleVisibility = value; OnPropertyChanged(); }
+        }
+
+        public bool RosterBtnVisibility
+        {
+            get { return rosterBtnVisibility; }
+            set { rosterBtnVisibility = value; OnPropertyChanged(); }
+        }
+
+        public bool ScheduleBtnVisibility
+        {
+            get { return scheduleBtnVisibility; }
+            set { scheduleBtnVisibility = value; OnPropertyChanged(); }
         }
 
         public void GetRoster()
         {
-            Athletes = rosterService.GetRoster();
-            Athletes.Add(new Athlete());
+            RosterBtnVisibility = true;
+            ScheduleBtnVisibility = true;
+            RosterVisibility = true;
+            ScheduleVisibility = false;
         }
 
-        public ObservableCollection<Game> GetSchedule()
+        public void GetSchedule()
         {
-            Game game = new Game();
-            game.Opponent = "K";
-            Games.Add(game);
-
-            return Games;
+            RosterBtnVisibility = true;
+            ScheduleBtnVisibility = true;
+            RosterVisibility = false;
+            ScheduleVisibility = true;
         }
 
+        public void GoHome()
+        {
+            if (App.Current is null)
+                return;
+            App.Current.MainPage = new NavigationPage(new MainPage());
+        }
+
+        public void GetTeam(int sport)
+        {
+            RosterBtnVisibility = false;
+            ScheduleBtnVisibility = false;
+            Games = scheduleService.GetSchedule(sport);
+            Athletes = rosterService.GetRoster(sport);
+            RosterBtnVisibility = true;
+            ScheduleBtnVisibility = true;
+        }
+
+        private void DisplaySports()
+        {
+            ObservableCollection<string> sports = new();
+            sports.Add("Baseball");
+            sports.Add("Basketball");
+            sports.Add("Cross Country");
+            sports.Add("Football");
+            sports.Add("Golf");
+            sports.Add("Lacrosse");
+            sports.Add("Soccer");
+            sports.Add("Swimming & Diving");
+            sports.Add("Tennis");
+            sports.Add("Track & Field");
+            sports.Add("ACHA Hockey");
+            Sports = sports;
+        }
 
         public AthleticsMenViewModel()
         {
+            HomeCommand = new Command(() => GoHome());
             RosterCommand = new Command(() => GetRoster());
             ScheduleCommand = new Command(() => GetSchedule());
+            DisplaySports();
         }
 
-
-
-
-
-
-
-
-
-
-
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
         {
-            PropertyChangedEventHandler handler = PropertyChanged;
-            if(handler != null)
-                handler(this, new PropertyChangedEventArgs(propertyName));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

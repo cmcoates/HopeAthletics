@@ -13,26 +13,30 @@
 
             <HorizontalStackLayout HorizontalOptions="Center">
                 <Button
-                x:Name="MensSports"
-                Text="Men's Sports"
-                Clicked="OnCounterClickedMenSports"
-                HorizontalOptions="Center"
-                Margin="0,0,10,0"
-                BackgroundColor="#024"/>
+                        x:Name="MensSports"
+                        Text="Men's Sports"
+                        Clicked="OnCounterClickedMenSports"
+                        HorizontalOptions="Center"
+                        Margin="0,0,10,0"
+                        BackgroundColor="#024"
+                        CornerRadius="5"/>
                 
                 <Button
-                x:Name="WomensSports"
-                Text="Women's Sports"
-                Clicked="OnCounterClickedWomensSports"
-                HorizontalOptions="Center"
-                BackgroundColor="#024"/>
+                        x:Name="WomensSports"
+                        Text="Women's Sports"
+                        Clicked="OnCounterClickedWomensSports"
+                        HorizontalOptions="Center"
+                        Margin="0,0,10,0"
+                        BackgroundColor="#024"
+                        CornerRadius="5"/>
             </HorizontalStackLayout>
 
             <Button Text="Intramurals"
                     Clicked="Button_Clicked"
                     BackgroundColor="#024"
                     HorizontalOptions="Center"
-                    WidthRequest="130">
+                    WidthRequest="120"
+                    CornerRadius="5">
                 
             </Button>
             <Button x:Name="About"

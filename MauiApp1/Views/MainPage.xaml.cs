@@ -6,6 +6,7 @@ public partial class MainPage : ContentPage
 	{
 		InitializeComponent();
         this.BindingContext = this;
+        //App.Current.UserAppTheme = AppTheme.Dark;
     }
 
 	private void OnCounterClickedMenSports(object sender, EventArgs e)

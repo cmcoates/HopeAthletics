@@ -12,14 +12,14 @@ namespace MauiApp1.Services
 {
     internal class RosterService
     {
-        public ObservableCollection<Athlete> GetRoster()
+        public ObservableCollection<Athlete> GetRoster(int selectedIndex)
         {
-            ObservableCollection<Athlete> athletes = new ObservableCollection<Athlete>();
+            ObservableCollection<Athlete> athletes = new();
             HtmlWeb web = new();
             HtmlDocument docA = web.Load("https://athletics.hope.edu/navbar-men-sports");
             var mensSports = docA.DocumentNode.SelectNodes("//li[@class='has-nav']//ul[@class='clearfix']//li[2]");
             mensSports.RemoveAt(10);
-            var msport = mensSports[7];
+            var msport = mensSports[selectedIndex];
             String path = msport.InnerHtml;
             string pattern = @"/sports/[\w/-]*";
             Regex rg = new(pattern);
@@ -71,11 +71,6 @@ namespace MauiApp1.Services
                     athletes.Add(athlete);
                 }
             }
-            else
-            {
-                //RosterNotFound.Text = "Roster not available";
-            }
-
             return athletes;
         }
     }

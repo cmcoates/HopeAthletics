@@ -7,7 +7,8 @@
                 Clicked="Button_Clicked"
                 HorizontalOptions="Start"
                 BackgroundColor="#024"
-                FontFamily="Segoe MDL2 Assets">
+                FontFamily="Segoe MDL2 Assets"
+                CornerRadius="5">
         </Button>
 
 
@@ -17,7 +18,8 @@
                 HorizontalOptions="Start"
                 BackgroundColor="#024"
                 IsVisible="false"
-                FontFamily="Segoe MDL2 Assets"/>
+                FontFamily="Segoe MDL2 Assets"
+                CornerRadius="5"/>
 
         <ListView x:Name="IntramuralEvents"
                   ItemsSource="{Binding Events}"
