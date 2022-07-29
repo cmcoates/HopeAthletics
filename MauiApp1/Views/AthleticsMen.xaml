@@ -8,7 +8,7 @@
     <ContentPage.BindingContext>
         <local:AthleticsMenViewModel />
     </ContentPage.BindingContext>
-    
+
     <VerticalStackLayout>
         <HorizontalStackLayout>
             <Button Text="&#xEA8A;"
@@ -19,7 +19,6 @@
             </Button>
         </HorizontalStackLayout>
 
-        
         <Picker x:Name="SportPicker"
                 Title="Select a sport" 
                 ItemsSource="{Binding Sports}"
@@ -27,12 +26,11 @@
                 SelectedIndexChanged="SportPicker_SelectedIndexChanged">
         </Picker>
         
-        <!--
-        <ListView ItemsSource="{Binding Sports}"
-                  SelectedItem="">
-            
-        </ListView>
-        -->
+        <Label Text="{Binding RosterNotFound}"
+               HorizontalOptions="Center" />
+        <Label Text="{Binding ScheduleNotFound}"
+               HorizontalOptions="Center" />
+        
         <HorizontalStackLayout HorizontalOptions="Center">
             <Button x:Name="RosterButton"
                     Text="Roster"
@@ -49,13 +47,14 @@
                     IsVisible="{Binding ScheduleBtnVisibility, Mode=OneWay}">
             </Button>
         </HorizontalStackLayout>
-        
+
 
         <ListView x:Name="RosterList"
                   ItemsSource="{Binding Athletes}"
                   HeightRequest="400"
                   Margin="15"
-                  IsVisible="{Binding RosterVisibility, Mode=OneWay}">
+                  IsVisible="{Binding RosterVisibility, Mode=OneWay}"
+                  SelectionMode="None">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
@@ -66,8 +65,8 @@
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="auto" />
-                                <ColumnDefinition Width="350" />
-                                <ColumnDefinition Width="auto" />
+                                <ColumnDefinition Width="200" />
+                                <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
 
                             <Image Grid.RowSpan="2"
@@ -100,7 +99,8 @@
                   ItemsSource="{Binding Games}"
                   HeightRequest="400"
                   Margin="15"
-                  IsVisible="{Binding ScheduleVisibility, Mode=OneWay}">
+                  IsVisible="{Binding ScheduleVisibility, Mode=OneWay}"
+                  SelectionMode="None">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
@@ -118,7 +118,7 @@
 
                             <Label Grid.Row="1"
                                    Grid.Column="1"
-                                   Text="{Binding Date}"/>
+                                   Text="{Binding Date}" />
 
                             <Label Grid.Row="1"
                                    Grid.Column="2"
@@ -128,149 +128,16 @@
                             <Label Grid.Row="2"
                                    Grid.Column="2"
                                    Text="{Binding Opponent}"
-                                   VerticalOptions="End"/>
+                                   VerticalOptions="End" />
 
                             <Label Grid.Row="1"
                                    Grid.Column="3"
                                    Text="{Binding Result}"
-                                   FontAttributes="Italic"/>
+                                   FontAttributes="Italic" />
                         </Grid>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
     </VerticalStackLayout>
-    
-
-
-
-
-    <!--
-    <VerticalStackLayout>
-        <Button Text="&#xEA8A;"
-                Clicked="Button_Clicked"
-                HorizontalOptions="Start"
-                BackgroundColor="#024"
-                FontFamily="Segoe MDL2 Assets">
-        </Button>
-
-        <Picker x:Name="SportPicker"
-                Title="Select a sport" 
-                ItemsSource="{Binding Sports}"
-                HorizontalOptions="Center"
-                SelectedIndexChanged="OnPickerSelectedIndexChanged"/>
-
-        <Label x:Name="RosterNotFound"
-               HorizontalOptions="Center"/>
-
-        <Label x:Name="ScheduleNotFound"
-               HorizontalOptions="Center"/>
-
-        <HorizontalStackLayout HorizontalOptions="Center">
-            <Button x:Name="RosterBtn"
-                    Text="Roster"
-                    Clicked="OnRosterClicked"
-                    IsVisible="false"
-                    CornerRadius="5">
-            </Button>
-            <Button x:Name="ScheduleBtn"
-                    Text="Schedule"
-                    Clicked="OnScheduleClicked"
-                    IsVisible="false"
-                    CornerRadius="5">
-            </Button>
-        </HorizontalStackLayout>
-
-
-        <ListView x:Name="RosterList"
-                  ItemsSource="{Binding Athletes}"
-                  HeightRequest="400"
-                  Margin="15"
-                  IsVisible="false">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <Grid Padding="10">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="auto" />
-                                <RowDefinition Height="60" />
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="auto" />
-                                <ColumnDefinition Width="300" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
-
-                            <Image Grid.RowSpan="2"
-                                   Source="{Binding ImageUrl}"
-                                   Aspect="AspectFill"
-                                   HeightRequest="60"
-                                   WidthRequest="60"
-                                   Margin="10,10,10,10"/>
-
-                            <Label Grid.Column="1"
-                                   Grid.Row="1"
-                                   Text="{Binding Name}"
-                                   FontAttributes="Bold" />
-                            <Label Grid.Column="1"
-                                   Grid.Row="2"
-                                   Text="{Binding Hometown}"
-                                   VerticalOptions="End"/>
-                            <Label Grid.Column="3"
-                                   Grid.Row="1"
-                                   Text="{Binding Class}"
-                                   FontAttributes="Italic" 
-                                   HorizontalOptions="End"/>
-                        </Grid>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-
-
-        <ListView x:Name="ScheduleList"
-                  ItemsSource="{Binding Games}"
-                  HeightRequest="400"
-                  Margin="15"
-                  IsVisible="false">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <Grid Padding="10">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="auto" />
-                                <RowDefinition Height="60" />
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="auto" />
-                                <ColumnDefinition Width="175" />
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="auto" />
-                            </Grid.ColumnDefinitions>
-
-                            <Label Grid.Row="1"
-                                   Grid.Column="1"
-                                   Text="{Binding Date}"/>
-
-                            <Label Grid.Row="1"
-                                   Grid.Column="2"
-                                   Text="{Binding Location}"
-                                   FontAttributes="Bold" />
-
-                            <Label Grid.Row="2"
-                                   Grid.Column="2"
-                                   Text="{Binding Opponent}"
-                                   VerticalOptions="End"/>
-
-                            <Label Grid.Row="1"
-                                   Grid.Column="3"
-                                   Text="{Binding Result}"
-                                   FontAttributes="Italic"/>
-                        </Grid>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-    </VerticalStackLayout>
-    -->
 </ContentPage>

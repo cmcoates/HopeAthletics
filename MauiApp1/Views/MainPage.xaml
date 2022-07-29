@@ -9,6 +9,15 @@
             Padding="30,0"
             VerticalOptions="Center">
 
+            <Button x:Name="About"
+                    Text="&#xe713;"
+                    Clicked="OnAboutClicked"
+                    VerticalOptions="End"
+                    BackgroundColor="#024"
+                    FontFamily="Segoe Fluent Icons"
+                    HorizontalOptions="End">
+            </Button>
+            
             <Image Source="C:\Users\12697\AthleticsApp\HopeAthletics.png" WidthRequest="250" />
 
             <HorizontalStackLayout HorizontalOptions="Center">
@@ -37,17 +46,7 @@
                     HorizontalOptions="Center"
                     WidthRequest="120"
                     CornerRadius="5">
-                
             </Button>
-            <Button x:Name="About"
-                    Text="About"
-                    Clicked="OnAboutClicked"
-                    VerticalOptions="End"
-                    BackgroundColor="#024">
-                
-            </Button>
-
-            <ListView ItemsSource="{Binding Sports}"/>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

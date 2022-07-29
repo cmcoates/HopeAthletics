@@ -1,16 +1,28 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:MauiApp1"
              x:Class="MauiApp1.About"
              Title="About">
+
+    <ContentPage.BindingContext>
+        <local:AboutViewModel />
+    </ContentPage.BindingContext>
+    
     <VerticalStackLayout>
-        <Button
-            Clicked="Button_Clicked" 
-            HorizontalOptions="Start"
-            BackgroundColor="#024"
-            Text="Home">
+        <Button Text="&#xEA8A;"
+                HorizontalOptions="Start"
+                BackgroundColor="#024"
+                FontFamily="Segoe MDL2 Assets"
+                Command="{Binding HomeCommand}">
         </Button>
 
+        <Button Text="&#xEB52; Donate"
+                FontFamily="Segoe MDL2 Assets"
+                WidthRequest="175"
+                BackgroundColor="#024"
+                Command="{Binding DonateCommand}">
+        </Button>
         <Label 
             Text="Created by Cameron Coates"
             VerticalOptions="EndAndExpand" 

@@ -1,16 +1,8 @@
-﻿using HtmlAgilityPack;
-using MauiApp1.Models;
+﻿using MauiApp1.Models;
 using MauiApp1.Services;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Diagnostics;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace MauiApp1
@@ -35,6 +27,8 @@ namespace MauiApp1
         public bool scheduleVisibility = false;
         public bool rosterBtnVisibility = false;
         public bool scheduleBtnVisibility = false;
+        public String rosterNotFound = "";
+        public String scheduleNotFound = "";
 
         public ObservableCollection<Athlete> Athletes
         {
@@ -84,6 +78,18 @@ namespace MauiApp1
             set { scheduleBtnVisibility = value; OnPropertyChanged(); }
         }
 
+        public string RosterNotFound
+        {
+            get { return rosterNotFound; }
+            set { rosterNotFound = value; OnPropertyChanged(); }
+        }
+
+        public string ScheduleNotFound
+        {
+            get { return scheduleNotFound; }
+            set { scheduleNotFound = value; OnPropertyChanged(); }
+        }
+
         public void GetRoster()
         {
             RosterBtnVisibility = true;
@@ -100,7 +106,7 @@ namespace MauiApp1
             ScheduleVisibility = true;
         }
 
-        public void GoHome()
+        public static void GoHome()
         {
             if (App.Current is null)
                 return;
@@ -113,30 +119,50 @@ namespace MauiApp1
             ScheduleBtnVisibility = false;
             Games = scheduleService.GetSchedule(sport);
             Athletes = rosterService.GetRoster(sport);
+
+            if(Games.Count == 0)
+            {
+                ScheduleNotFound = "Schedule not available";
+            }
+            else
+            {
+                ScheduleNotFound = "";
+            }
+            
+            if (Athletes.Count == 0)
+            {
+                RosterNotFound = "Roster not available";
+            }
+            else
+            {
+                RosterNotFound = "";
+            }
             RosterBtnVisibility = true;
             ScheduleBtnVisibility = true;
         }
 
         private void DisplaySports()
         {
-            ObservableCollection<string> sports = new();
-            sports.Add("Baseball");
-            sports.Add("Basketball");
-            sports.Add("Cross Country");
-            sports.Add("Football");
-            sports.Add("Golf");
-            sports.Add("Lacrosse");
-            sports.Add("Soccer");
-            sports.Add("Swimming & Diving");
-            sports.Add("Tennis");
-            sports.Add("Track & Field");
-            sports.Add("ACHA Hockey");
+            ObservableCollection<string> sports = new()
+            {
+                "Baseball",
+                "Basketball",
+                "Cross Country",
+                "Football",
+                "Golf",
+                "Lacrosse",
+                "Soccer",
+                "Swimming & Diving",
+                "Tennis",
+                "Track & Field",
+                "ACHA Hockey"
+            };
             Sports = sports;
         }
 
         public AthleticsMenViewModel()
         {
-            HomeCommand = new Command(() => GoHome());
+            HomeCommand = new Command(() => AthleticsMenViewModel.GoHome());
             RosterCommand = new Command(() => GetRoster());
             ScheduleCommand = new Command(() => GetSchedule());
             DisplaySports();
