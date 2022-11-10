@@ -9,35 +9,44 @@
             Padding="30,0"
             VerticalOptions="Center">
 
+            <Button x:Name="About"
+                    Text="&#xe713;"
+                    Clicked="OnAboutClicked"
+                    VerticalOptions="End"
+                    BackgroundColor="#024"
+                    FontFamily="Segoe Fluent Icons"
+                    HorizontalOptions="End">
+            </Button>
+            
             <Image Source="C:\Users\12697\AthleticsApp\HopeAthletics.png" WidthRequest="250" />
 
             <HorizontalStackLayout HorizontalOptions="Center">
                 <Button
-                x:Name="MensSports"
-                Text="Men's Sports"
-                Clicked="OnCounterClickedMenSports"
-                HorizontalOptions="Center"
-                Margin="0,0,10,0"
-                BackgroundColor="#024"/>
+                        x:Name="MensSports"
+                        Text="Men's Sports"
+                        Clicked="OnCounterClickedMenSports"
+                        HorizontalOptions="Center"
+                        Margin="0,0,10,0"
+                        BackgroundColor="#024"
+                        CornerRadius="5"/>
                 
                 <Button
-                x:Name="WomensSports"
-                Text="Women's Sports"
-                SemanticProperties.Hint="Counts the number of times you click"
-                Clicked="OnCounterClickedWomensSports"
-                HorizontalOptions="Center"
-                BackgroundColor="#024"/>
+                        x:Name="WomensSports"
+                        Text="Women's Sports"
+                        Clicked="OnCounterClickedWomensSports"
+                        HorizontalOptions="Center"
+                        Margin="0,0,10,0"
+                        BackgroundColor="#024"
+                        CornerRadius="5"/>
             </HorizontalStackLayout>
 
-            <Button x:Name="About"
-                    Text="About"
-                    Clicked="OnAboutClicked"
-                    VerticalOptions="End"
-                    BackgroundColor="#024">
-                
+            <Button Text="Intramurals"
+                    Clicked="Button_Clicked"
+                    BackgroundColor="#024"
+                    HorizontalOptions="Center"
+                    WidthRequest="120"
+                    CornerRadius="5">
             </Button>
-
-            <ListView ItemsSource="{Binding Sports}"/>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

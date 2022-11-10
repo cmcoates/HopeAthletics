@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp1.Intramurals">
+    <VerticalStackLayout>
+        <Button Text="&#xEA8A;"
+                Clicked="Button_Clicked"
+                HorizontalOptions="Start"
+                BackgroundColor="#024"
+                FontFamily="Segoe MDL2 Assets"
+                CornerRadius="5">
+        </Button>
+
+
+        <Button x:Name="SportsBtn"
+                Text="&#xF0D5;"
+                Clicked="Button_Clicked_1"
+                HorizontalOptions="Start"
+                BackgroundColor="#024"
+                IsVisible="false"
+                FontFamily="Segoe MDL2 Assets"
+                CornerRadius="5"/>
+
+        <ListView x:Name="IntramuralEvents"
+                  ItemsSource="{Binding Events}"
+                  HeightRequest="400"
+                  Margin="15"
+                  IsVisible="true"
+                  ItemSelected="IntramuralEvents_ItemSelected">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid Padding="10">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="60" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto" />
+                                <ColumnDefinition Width="350" />
+                            </Grid.ColumnDefinitions>
+
+                            <Label Grid.Column="1"
+                                   Grid.Row="1"
+                                   Text="{Binding Sport}"
+                                   FontAttributes="Bold" />
+                            <Label Grid.Column="1"
+                                   Grid.Row="2"
+                                   Text="{Binding Season}"
+                                   VerticalOptions="End"/>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <ListView x:Name="IntramuralStandings"
+                  ItemsSource="{Binding Stands}"
+                  HeightRequest="400"
+                  Margin="15"
+                  IsVisible="false">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid Padding="10">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="40" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto" />
+                                <ColumnDefinition Width="25" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Label Grid.Column="1"
+                                   Grid.Row="1"
+                                   Text="{Binding Ranking}"
+                                   FontAttributes="Bold" />
+                            <Label Grid.Column="2"
+                                   Grid.Row="1"
+                                   Text="{Binding Team}"/>
+                            <Label Grid.Column="2"
+                                   Grid.Row="2"
+                                   Text="{Binding GamesPlayed}"
+                                   HorizontalOptions="End"/>
+                            <Label Grid.Column="3"
+                                   Grid.Row="2"
+                                   Text="{Binding Record}"
+                                   VerticalOptions="End"/>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </VerticalStackLayout>
+</ContentPage>

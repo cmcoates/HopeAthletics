@@ -1,8 +1,8 @@
 AreAnyAssembliesTrimmed=false
-				AssemblyName=MauiApp1.dll
+				AssemblyName=HopeAthletics.dll
 				AOTCompiler=
 				AOTOutputDirectory=obj\Debug\net6.0-maccatalyst\maccatalyst-x64\nativelibraries/aot-output/
-				AppBundleManifestPath=bin\Debug\net6.0-maccatalyst\maccatalyst-x64\MauiApp1.app\Contents/Info.plist
+				AppBundleManifestPath=bin\Debug\net6.0-maccatalyst\maccatalyst-x64\HopeAthletics.app\Contents/Info.plist
 				CacheDirectory=C:\Users\12697\source\repos\MauiApp1\MauiApp1\obj\Debug\net6.0-maccatalyst\maccatalyst-x64\linker-cache
 				
 				Debug=true
@@ -196,7 +196,7 @@ MonoLibrary=C:\Program Files\dotnet\packs\Microsoft.NETCore.App.Runtime.Mono.mac
 				PartialStaticRegistrarLibrary=C:\Program Files\dotnet\packs\Microsoft.MacCatalyst.Runtime.maccatalyst-x64\15.4.430/runtimes/maccatalyst-x64/native/Microsoft.MacCatalyst.registrar.a
 				Platform=MacCatalyst
 				PlatformAssembly=Microsoft.MacCatalyst.dll
-				RelativeAppBundlePath=..\MauiApp1.app\
+				RelativeAppBundlePath=..\HopeAthletics.app\
 				Registrar=
 				RuntimeConfigurationFile=runtimeconfig.bin
 				SdkDevPath=

@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MauiApp1.AthleticsWomen"
-             Title="Women's Athletics">
+             x:Class="MauiApp1.AthleticsWomen">
     <VerticalStackLayout>
-        <Button Text="Home"
+        <Button Text="&#xEA8A;"
                 Clicked="Button_Clicked"
                 HorizontalOptions="Start"
-                BackgroundColor="#024">
+                BackgroundColor="#024"
+                FontFamily="Segoe MDL2 Assets"
+                CornerRadius="5">
         </Button>
 
         <Picker x:Name="SportPicker"
                 Title="Select a sport" 
                 ItemsSource="{Binding Sports}"
                 HorizontalOptions="Center"
-                SelectedIndexChanged="OnPickerSelectedIndexChanged"/>
+                SelectedIndexChanged="OnPickerSelectedIndexChanged" />
 
         <Label x:Name="RosterNotFound"
                HorizontalOptions="Center"/>
@@ -49,8 +50,8 @@
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="auto" />
-                                <ColumnDefinition Width="350" />
-                                <ColumnDefinition Width="auto" />
+                                <ColumnDefinition Width="300" />
+                                <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
 
                             <Image Grid.RowSpan="2"

@@ -1,11 +1,4 @@
-﻿
-using HtmlAgilityPack;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using static MauiApp1.MainPage;
-
-namespace MauiApp1;
+﻿namespace MauiApp1;
 
 public partial class MainPage : ContentPage
 {
@@ -13,6 +6,7 @@ public partial class MainPage : ContentPage
 	{
 		InitializeComponent();
         this.BindingContext = this;
+        //App.Current.UserAppTheme = AppTheme.Dark;
     }
 
 	private void OnCounterClickedMenSports(object sender, EventArgs e)
@@ -27,5 +21,10 @@ public partial class MainPage : ContentPage
     private void OnAboutClicked(object sender, EventArgs e)
     {
         App.Current.MainPage = new NavigationPage(new About());
+    }
+
+    private void Button_Clicked(object sender, EventArgs e)
+    {
+        App.Current.MainPage = new NavigationPage(new Intramurals());
     }
 }
